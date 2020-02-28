@@ -43,6 +43,8 @@
  * 
  * last:  Last returns the last element in the list. If there happens to be no elements in
  * 		  the list it will return -1.
+ * 
+ * size: Returns the true size of the list. Since count could be off when adding space and taking away space.
  *         
  */
 package cse360assign2;
