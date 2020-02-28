@@ -1,7 +1,8 @@
-/* Name: Robert Pennell
-
+/* 
+ * 
+ * Name: Robert Pennell
  * Class ID: 405
- * Assignment: Assignment 1
+ * Assignment: Assignment 2
  * 
  * This file implements all of the needed functions that were given in the assignment.
  * 
@@ -17,8 +18,11 @@
  * 			asks for.
  * 
  * remove: Removes a number that is told to be removed from the list.
- * 		   Uses the search funtion to look for the specified number in
+ * 		   Uses the search function to look for the specified number in
  * 		   the list.
+ * 		   Remove now has the ability to see if the list has more than 
+ * 		   25% empty space and if it does then it will decrease the size
+ * 		   of the list down to amount of elements in the list.
  * 
  * count: Returns the count of the list to show how many elements are in
  * 		  the list.
@@ -31,10 +35,19 @@
  *         index of the element. If the element is not in the list it will return
  *         -1.
  *         
+ * append: Will append the parameter at the end of the list. If there is no room for
+ * 		   the append then it will increase the size of the array by 50%.
+ * 
+ * first: First simply returns that first element in the list. If there is nothing in
+ * 		  the list it will return -1.
+ * 
+ * last:  Last returns the last element in the list. If there happens to be no elements in
+ * 		  the list it will return -1.
+ *         
  */
 package cse360assign2;
 import java.util.Arrays;
-// Check
+
 
 public class SimpleList 
 {
@@ -144,6 +157,14 @@ public class SimpleList
 			
 		}
 		
+		int n;
+		n = (3 * list.length) / 4;
+		
+		if(count < n)
+		{
+			remake(count);
+		}
+		
 	}
 	
 	public int count()
@@ -196,5 +217,57 @@ public class SimpleList
 		
 	}
 	
+	public void append(int key)
+	{
+		
+		if(count == list.length)
+		{
+			int sizing = count / 2;
+			remake(count + sizing);
+		}
+		
+		list[count] = key;
+		count++;
+		
+	}
+	
+	public int first()
+	{
+		int finalValue;
+		
+		if(count == 0)
+		{
+			finalValue = -1;
+		}
+		else
+		{
+			finalValue = list[0];
+		}
+		
+		return finalValue;
+	}
+	
+	public int last()
+	{
+		int finalValue;
+		
+		if(count == 0)
+		{
+			finalValue = -1;
+		}
+		else
+		{
+			finalValue = list[count];
+		}
+		
+		return finalValue;
+		
+		
+	}
+	
+	public int size()
+	{
+		return list.length;
+	}
 	
 }
